@@ -1,0 +1,23 @@
+{
+	"assimilation_rate": 0.4,
+	"revolution_rate": 0.1,
+	"alpha_rate": 0.8,
+	"revolution_probability": 0.2,
+	"neighbourhood_radius": 0.1,
+	"constant_gravitation": 6.672,
+	"number_of_tasks": 5,
+	"number_of_processors": 4,
+	"number_of_iterations": 30,
+	"number_of_countries": 300,
+	"number_of_empires": 20,
+	"tasks": ["T1", "T2", "T3", "T4", "T5"],
+	"resources": ["R1", "R2", "R3", "R4"],
+	"ETC": [
+		[1, 2, 3, 4],
+		[5, 6, 7, 8],
+		[9, 11, 11, 12],
+		[9, 13, 11, 12],
+		[9, 12, 11, 12]
+	]
+
+}
