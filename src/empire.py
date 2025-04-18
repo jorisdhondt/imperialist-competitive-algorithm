@@ -6,10 +6,10 @@ class Empire:
     def __init__(self, emperor):
         self.emperor = emperor
         self.colonies = []
-        self.cost = emperor.getCost()
+        self.cost = emperor.cost
 
     def _calculateCost(self):
-        self.cost = self.emperor.getCost() + sum([x.getCost() for x in self.colonies])
+        self.cost = self.emperor.cost + sum([x.cost for x in self.colonies])
 
     def replaceColony(self,index,colony):
         self.colonies[index] = colony

@@ -25,7 +25,8 @@ class Country:
     def getRepresentation(self):
         return self.representation
 
-    def getCost(self):
+    @property
+    def cost(self):
         return self.makespan
 
     def getTimeFitness(self):

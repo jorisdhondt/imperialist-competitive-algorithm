@@ -27,7 +27,7 @@ def createCountries(config):
 
 def createEmpires(countries,config):
 
-    costs = np.array([np.sum(countries[i].getCost()) for i in range(len(countries))])
+    costs = np.array([np.sum(countries[i].cost) for i in range(len(countries))])
 
     indices = np.argsort(costs)
 
@@ -76,7 +76,7 @@ def revolution(empires, config):
         for i in range(empires[k].getNumberOfColonies()):
             if rn.random() <= config['revolution_probability']:
                 colony_representation = empires[k].getColony(i).getRepresentation()
-                oldCost = empires[k].getColony(i).getCost()
+                oldCost = empires[k].getColony(i).cost
                 number_of_tasks = int(math.ceil(config['revolution_rate']*colony_representation.shape[0]))
                 candidates = rn.sample(range(colony_representation.shape[0]), number_of_tasks)
                 exchange = list(range(colony_representation.shape[0]))
@@ -90,7 +90,7 @@ def revolution(empires, config):
                     new_colony_representation[y] = colony_representation[x]
                 #empires[k].getColony(i).setRepresentation(new_colony_representation)
                 new_colony=Country(new_colony_representation)
-                if (new_colony.getCost() < oldCost):
+                if (new_colony.cost < oldCost):
                     empires[k].replaceColony(i,new_colony)
 
     return empires
@@ -101,7 +101,7 @@ def interEmpireWar(empires, config):
     if len(empires) == 1:
         return empires
 
-    TotalCost = np.array([empires[i].getCost() for i in range(len(empires))])
+    TotalCost = np.array([empires[i].cost for i in range(len(empires))])
     # TotalCost=emp['TotalCost']
 
     weakest_empire_index = np.argmax(TotalCost)
@@ -116,7 +116,7 @@ def interEmpireWar(empires, config):
         P = P / sum(P);
 
     if weakest_empire.getNumberOfColonies() > 0:
-        weakest_empire_colonies_cost = np.array([weakest_empire.getColony(i).getCost()for i in range(weakest_empire.getNumberOfColonies())])
+        weakest_empire_colonies_cost = np.array([weakest_empire.getColony(i).cost for i in range(weakest_empire.getNumberOfColonies())])
         weakest_colony_index= np.argmax(weakest_empire_colonies_cost)
         weakest_colony = weakest_empire.getColony(weakest_colony_index)
 
@@ -152,7 +152,7 @@ def intraEmpireWar(empires, config):
     number_of_empires = len(empires)
     for k in range(number_of_empires):
         for i in range(empires[k].getNumberOfColonies()):
-            if empires[k].getColony(i).getCost() < empires[k].getEmperor().getCost():
+            if empires[k].getColony(i).cost < empires[k].getEmperor().cost:
                 old_emperor = empires[k].getEmperor()
                 old_colony = empires[k].getColony(i)
                 empires[k].replaceColony(i,old_emperor)
@@ -192,7 +192,7 @@ for it in range(config['number_of_iterations']):
 
     # Update best solution ever found
 
-    costs = np.array([empires[i].getEmperor().getCost() for i in range(len(empires))])
+    costs = np.array([empires[i].getEmperor().cost for i in range(len(empires))])
     #imp = np.array([empires[i]['Imp'] for i in range(len(empires))])
     #costs = np.array([imp[i]['Cost'] for i in range(len(imp))])
 
