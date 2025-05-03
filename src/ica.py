@@ -126,16 +126,10 @@ def interEmpireWar(empires, config):
         winning_empire.addColony(weakest_colony)
 
         weakest_empire.deleteColony(weakest_colony_index)
-        #WeakestEmp['Col'] = np.delete(WeakestEmp['Col'], WeakestColIndex)
-
-        #WeakestEmp['nCol'] = WeakestEmp['nCol'] - 1
 
     if weakest_empire.getNumberOfColonies() == 0:
-    #if WeakestEmp['nCol'] == 0:
         winning_empire_index = randomSelection(P)
-        #WinnerEmpIndex2 = RouletteWheelSelection(P)
         winning_empire = empires[winning_empire_index]
-        #WinnerEmp2 = emp[WinnerEmpIndex2]
 
         winning_empire.addColony(weakest_empire.getEmperor())
         #WinnerEmp2['Col'] = np.append(WinnerEmp2['Col'], WeakestEmp['Imp'])
